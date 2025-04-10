@@ -1,0 +1,15 @@
+#buttonkh {
+    -fx-background-color: #e7e5ec; /* Màu nền mặc định */
+}
+
+#buttonkh:hover {
+    -fx-background-color: #f9f9f9; /* Màu nền khi di chuột vào */
+}
+
+/*
+.tooltip {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+*/
