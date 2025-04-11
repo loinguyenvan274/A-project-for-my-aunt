@@ -24,5 +24,4 @@ public class Manager  {
         }
         return manager;
     }
-    public List<KhachHangNo> getKhachHangNos(){return  appDAO.getItems(KhachHangNo.class);}
 }

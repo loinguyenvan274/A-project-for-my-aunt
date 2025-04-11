@@ -126,10 +126,18 @@ public class AppDAO  {
         return  items;
     }
 
+    public <T> List<T> getItemsEqual(Class<T> objectClass, String fieldName, Object value) {
+        List<T> items;
+        try (Session session = sessionFactory.openSession()) {
+            items = session.createQuery("FROM " + objectClass.getSimpleName() + " WHERE " + fieldName + " = :value", objectClass)
+                    .setParameter("value", value)
+                    .list();
+        }
+        return items;
+    }
 
     public <T> List getItemsLike(Class objectClass, String findItem, String findField){
       List<T> Items;
-      System.out.println(findItem);
       try  (Session session = sessionFactory.openSession()){
           Items = session.createQuery("FROM "+objectClass.getSimpleName()+" Where LOWER("+ findField +") LIKE LOWER(:findItem)",objectClass)
                   .setParameter("findItem","%"+findItem+"%")

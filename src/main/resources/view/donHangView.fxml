@@ -32,7 +32,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="63.0" spacing="3.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Tìm kiếm khách hàng" HBox.hgrow="ALWAYS" />
+                                    <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#timKiemKhachHang" prefHeight="25.0" prefWidth="130.0" text="Tìm kiếm khách hàng" HBox.hgrow="ALWAYS" />
                                  </children>
                                  <HBox.margin>
                                     <Insets />

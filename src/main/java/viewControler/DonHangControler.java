@@ -22,7 +22,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class DonHangControler {
+public class
+DonHangControler {
   private DonHang donHangMoiOrUpdate;
   private KhachHang khachHangChon;
 
@@ -110,10 +111,10 @@ static int count  = 0;
 
         donHangTenKhachHangColumn.setCellValueFactory(celldata -> new SimpleStringProperty(celldata.getValue().getKhachHang().getTen()));
         donHangTGMuaColumn.setCellValueFactory(celldata -> {
-            LocalDateTime thoiGianMua = celldata.getValue().getThoiGianMua();
+            LocalDate thoiGianMua = celldata.getValue().getThoiGianMua();
             String thoigianMuaString = "";
             if(thoiGianMua !=null){
-                thoigianMuaString = thoiGianMua.toLocalDate().toString();
+                thoigianMuaString = thoiGianMua.toString();
             }
            return new SimpleStringProperty(thoigianMuaString);
         });
@@ -183,6 +184,7 @@ static int count  = 0;
        }
        KhachHang khachHang = donHangMoiOrUpdate.getKhachHang();
        KhachHangNo khachHangNo = donHangMoiOrUpdate.getKhachHangNo();
+       datePickerThoiGianMua.setValue(donHangMoiOrUpdate.getThoiGianMua());
        setKhachHangNoInputBox(khachHangNo);
        if(khachHang !=null){
            tenKhachHangMoi.setText(khachHang.getTen());
@@ -264,28 +266,34 @@ static int count  = 0;
 
    @FXML
     private void chooseKhachHang(){
-     if(khachHangChon !=null){
+       if(khachHangChon ==null )
+           return;
+     if(addForm.isVisible()){
          donHangMoiOrUpdate.setKhachHang(khachHangChon);
-         closeCuaSoChonKhachHang();
          updateInfoOfTaoDonHangForm();
-     }else{
-      System.out.println("Vui lòng chọn khách hàng");
+         // tìm kiếm khách hàng
+     }else {
+         // TODO:
+         donHangTable.setItems(FXCollections.observableArrayList(DonHangService.getInstance().findDonHang(khachHangChon)));
      }
+       closeCuaSoChonKhachHang();
    }
-   private KhachHangNo createKhachHangNoFromUI(){
-        KhachHangNo khachHangNo = donHangMoiOrUpdate.getKhachHangNo();
-        if(checkBoxIsKhachNo.isSelected() && khachHangNo == null){
-            khachHangNo = new KhachHangNo(donHangMoiOrUpdate, MoneyFormatter.convertToMoneyFormat(FormatType.KHONG_XU_LY_NGOAI_LE,textFSoTienKhachTraTruoc.getText()),datePickerKiHan.getValue());
+   private KhachHangNo getKhachHangNoFromUI(){
+        if(!checkBoxIsKhachNo.isSelected()){
+            return null;
         }
+        KhachHangNo khachHangNo = new KhachHangNo(donHangMoiOrUpdate, MoneyFormatter.convertToMoneyFormat(FormatType.KHONG_XU_LY_NGOAI_LE,textFSoTienKhachTraTruoc.getText()),datePickerKiHan.getValue());
         return khachHangNo;
    }
 
    @FXML
-    private void addDonHang(){
+    private void addDonHang() throws DonHangExc {
        LocalDate thoiGianMua = datePickerThoiGianMua.getValue();
-       donHangMoiOrUpdate.setThoiGianMua(thoiGianMua != null ? thoiGianMua.atStartOfDay(): null);
-       donHangMoiOrUpdate.setKhachHangNo(createKhachHangNoFromUI());
-       DonHangService.getInstance().addDonHang(donHangMoiOrUpdate);
+       donHangMoiOrUpdate.setThoiGianMua(thoiGianMua != null ? thoiGianMua : null);
+       donHangMoiOrUpdate.setKhachHangNo(getKhachHangNoFromUI());
+       // TODO:
+
+       DonHangService.getInstance().inUpDonHang(donHangMoiOrUpdate);
        closeAddForm();
    }
 
@@ -295,7 +303,8 @@ static int count  = 0;
         if(donHangSanPham == null)
             return;
         donHangMoiOrUpdate.removeSanPhamMua(donHangSanPham);
-        sanPhamMuaTable.refresh();
+        sanPhamMuaTable.getItems().remove(donHangSanPham);
+//        sanPhamMuaTable.refresh();
    }
    @FXML
     private void xoaDonHang(){
@@ -312,5 +321,9 @@ static int count  = 0;
             initAddForm();
             btAddOrUpdateDonHang.setText("Hoàn tất");
         }
+   }
+   @FXML
+    private void timKiemKhachHang(){
+        openCuaSoChonKhachHang();
    }
 }

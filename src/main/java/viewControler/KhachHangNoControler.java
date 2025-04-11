@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.KhachHangNo;
+import service.KhachHangNoService;
 import service.Manager;
 
 import java.time.LocalDate;
@@ -40,7 +41,7 @@ public class KhachHangNoControler {
             }
             return value.asObject();
         });
-        khachHangNoTable.setItems(FXCollections.observableArrayList(Manager.getInstance().getKhachHangNos()));
+        khachHangNoTable.setItems(FXCollections.observableArrayList(KhachHangNoService.getInstance().getKhachHangNos()));
     }
 
     @FXML
@@ -51,7 +52,8 @@ public class KhachHangNoControler {
     }
     @FXML
     private void setInforKhachHangNo(){
-        System.out.println(Manager.getInstance().getKhachHangNos().get(0).getDonHang().getTongTienDonHang());
+        // TODO: f
+        System.out.println(KhachHangNoService.getInstance().getKhachHangNos().get(0).getDonHang().getTongTienDonHang());
     }
 
 

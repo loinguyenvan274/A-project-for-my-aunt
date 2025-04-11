@@ -3,6 +3,7 @@ package model;
 import jakarta.persistence.*;
 import myException.DonHangExc;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,16 +22,16 @@ public class DonHang {
     @JoinColumn(name = "id_khach_hang", referencedColumnName = "id_khach_hang", nullable = false)
     private KhachHang khachHang;
 
-    @OneToOne(mappedBy = "donHang",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "donHang",cascade = CascadeType.ALL,orphanRemoval = true)
     private KhachHangNo khachHangNo;
 
     @OneToMany(mappedBy = "donHang", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<DonHangSanPham> danhSachSanPham = new ArrayList<>();
 
     @Column(name = "thoi_gian_mua")
-    private LocalDateTime thoiGianMua;
+    private LocalDate thoiGianMua;
 
-    public DonHang(KhachHang khachHang, LocalDateTime thoiGianMua) {
+    public DonHang(KhachHang khachHang, LocalDate thoiGianMua) {
         this.khachHang = khachHang;
         this.thoiGianMua = thoiGianMua;
     }
@@ -50,17 +51,13 @@ public class DonHang {
 
     public void addSanPhamMua(DonHangSanPham donHangSanPham)throws DonHangExc{
         if(danhSachSanPham.contains(donHangSanPham)){
-            throw new DonHangExc("Sản phẩm đã tồn tại trong đơn hàng");
+            throw new DonHangExc(DonHangExc.DonHangExcType.SAN_PHAM_DA_TON);
         }
         danhSachSanPham.add(donHangSanPham);
     }
     public void removeSanPhamMua(DonHangSanPham donHangSanPham){
         danhSachSanPham.remove(donHangSanPham);
     }
-
-//    public void setDanhSachSanPham(List<DonHangSanPham> danhSachSanPham) {
-//        this.danhSachSanPham = danhSachSanPham;
-//    }
 
     public KhachHangNo getKhachHangNo() {
         return khachHangNo;
@@ -70,7 +67,7 @@ public class DonHang {
         this.khachHangNo = khachHangNo;
     }
 
-    public LocalDateTime getThoiGianMua() {
+    public LocalDate getThoiGianMua() {
         return thoiGianMua;
     }
 
@@ -83,7 +80,7 @@ public class DonHang {
        return danhSachSanPham.stream().mapToLong(element -> element.getSoLuong()*element.getGia()).sum();
     }
 
-    public void setThoiGianMua(LocalDateTime thoiGianMua) {
+    public void setThoiGianMua(LocalDate thoiGianMua) {
         this.thoiGianMua = thoiGianMua;
     }
 }
