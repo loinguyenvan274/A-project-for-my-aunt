@@ -4,25 +4,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 
 public class BarControler {
-    private static Stage primaryStage;
+    private static final Stage primaryStage;
     static {
        primaryStage =  MainControler.getMainStage();
     }
-    @FXML
-    private Button khachHangBar;
-    @FXML
-    private Button sanPhamBar;
-    @FXML
-    private Button donHangBar;
-    @FXML
-    private Button khachHangNoBar;
 
     private void setScene(String pathFileFxml, String pathFileCss) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(pathFileFxml));
@@ -34,18 +25,18 @@ public class BarControler {
 
     @FXML
     private void setKhachHangScene() throws IOException {
-        setScene("/view/khachHangView.fxml","/css/style.css");
+        setScene("/view/khachHangView.fxml", "/css/generalCss.css");
     }
     @FXML
     private void setSanPhamScene() throws IOException {
-        setScene("/view/SanPhamView.fxml","/css/style.css");
+        setScene("/view/sanPhamView.fxml", "/css/generalCss.css");
     }
     @FXML
     private void setDonHangScene() throws IOException {
-        setScene("/view/donHangView.fxml","/css/style.css");
+        setScene("/view/donHangView.fxml", "/css/generalCss.css");
     }
     @FXML
     private void setKhachHangNoScene() throws IOException {
-        setScene("/view/khachHangNoView.fxml","/css/style.css");
+        setScene("/view/donHangNoView.fxml", "/css/generalCss.css");
     }
 }

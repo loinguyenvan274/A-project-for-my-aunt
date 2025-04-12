@@ -1,0 +1,114 @@
+/* .root {
+    -fx-font-family: "Inner";
+    -fx-font-size: 11px;
+} */
+
+#bar{
+    -fx-background-color: #f8f8f7;
+    -fx-padding: 40 3 0 3;
+    -fx-spacing: 1;
+}
+.label{
+    -fx-font-weight: bold;
+  }
+
+
+#buttonkh {
+    -fx-background-color:  #f8f8f7; /* Màu nền mặc định */
+    -fx-alignment: CENTER_RIGHT;
+    -fx-border-width: 0;
+
+}
+
+#buttonkh:hover {
+    -fx-background-color: #f0f0ef; /* Màu nền khi di chuột vào */
+    -fx-border-width: 0.5;
+    -fx-border-color: black;
+
+}
+
+#idForm{
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+#formChinh{
+    -fx-background-color: #ffff;
+    -fx-background-radius:  7px;
+}
+
+.text-field,.button,.menu-button{
+    -fx-background-color: #ffffff;
+    -fx-border-width: 0.5;
+    -fx-border-color: black;
+    -fx-border-radius: 4;
+  }
+  .button:hover{
+    -fx-background-color: #f3f3f3;
+  }
+  /* Tổng thể TableView */
+  .table-view {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-table-cell-border-color: #e0e0e0;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-text-fill: #333;
+  }
+
+  /* Header */
+  .table-view .column-header {
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+  }
+
+  .table-view .column-header .label {
+    -fx-text-fill: #444;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 0 4px;
+  }
+
+  /* Dòng dữ liệu */
+  .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+  }
+
+  .table-row-cell:hover {
+    -fx-background-color: #f2f2f2;
+  }
+
+  .table-row-cell:filled:selected {
+    -fx-background-color: #d6eaff;
+  }
+  .table-row-cell:filled:selected .text {
+    -fx-fill: black;
+  }
+
+  /* Ô trong bảng */
+  .table-cell {
+    -fx-padding: 6px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+    -fx-alignment: CENTER_LEFT;
+    -fx-font-size: 12px;
+  }
+
+
+/*
+.tooltip {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+*/
+
+
+/*
+.tooltip {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+*/

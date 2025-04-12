@@ -64,6 +64,7 @@ public class AppDAO  {
 //    }
 
 
+
     public void deleteItem(Class classType,String key){
         Session session = null;
         Transaction tx = null;
@@ -73,7 +74,7 @@ public class AppDAO  {
             session.remove(session.find(classType,key));
             tx.commit();
         }catch (Exception e){
-            System.out.println("Error delete item in KhachHang table " + e.getMessage() );
+            System.out.println("Error delete item in "+classType.getSimpleName()+" table " + e.getMessage() );
             tx.rollback();
         }
 

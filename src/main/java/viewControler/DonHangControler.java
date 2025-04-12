@@ -19,20 +19,17 @@ import utils.MoneyFormatter;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class
 DonHangControler {
   private DonHang donHangMoiOrUpdate;
-  private KhachHang khachHangChon;
-
   @FXML
-  private Button btChonKhachHang,btChonSanPham, btAddOrUpdateDonHang;
+  private Button btChonSanPham, btAddOrUpdateDonHang;
   @FXML
   private BorderPane addForm;
   @FXML
-  private HBox formChonKhachHang,formChonSanPham;
+  private HBox cuaSoChonKhachHang,formChonSanPham;
   @FXML
   private Label tenKhachHangMoi,sdtKhachHangMoi,CTDHTen,CTDHSdt,CTDHGmail,CTDHDiaChi,CTDHThoiGianMua,CTDHTongTien;
   @FXML
@@ -57,23 +54,23 @@ DonHangControler {
 
 static int count  = 0;
     @FXML private void initialize(){
-        TableView tableKhachHangView = (TableView) formChonKhachHang.lookup("#khachHangTable");
-        if(tableKhachHangView!=null){
-            formChonKhachHang.setEventDispatcher((e,evenDispatchChain)->{
-                if(e instanceof MouseEvent mouseEvent){
-                    KhachHang khachHang = (KhachHang) tableKhachHangView.getSelectionModel().getSelectedItem();
-                    if(khachHang !=null){
-                        btChonKhachHang.setDisable(false);
-                        khachHangChon = khachHang;
-                    }else{
-                        khachHangChon = null;
-                        btChonKhachHang.setDisable(true);
-                    }
-                }
-                return evenDispatchChain.dispatchEvent(e);
+        Button btChonKhachHang = (Button) cuaSoChonKhachHang.lookup("#btChonKhachHang");
+        Button btDongForm = (Button) cuaSoChonKhachHang.lookup("#btDongForm");
+        btChonKhachHang.setOnAction(e->{
+            KhachHang khachHangChon = FormChonKhachHangControler.getKhachHangDangChon();
+            if(khachHangChon ==null )
+                return;
+            if(addForm.isVisible()){
+                donHangMoiOrUpdate.setKhachHang(khachHangChon);
+                updateInfoOfTaoDonHangForm();
+            }else {
+                //TODO:
+                donHangTable.setItems(FXCollections.observableArrayList(DonHangService.getInstance().findDonHang(khachHangChon)));
+            }
+            closeCuaSoChonKhachHang();
+        });
+        btDongForm.setOnAction(e->{closeCuaSoChonKhachHang();});
 
-            });
-        }
 
         TableView tableSanPhamView = (TableView) formChonSanPham.lookup("#tableSanPhamView");
         EventDispatcher xyLyNutChonSanPham = (e, eventDispatchChain)->{
@@ -102,7 +99,7 @@ static int count  = 0;
             setKhachHangNoInputBox(khachHangNo);
         }));
 
-        formChonKhachHang.setVisible(false);
+        cuaSoChonKhachHang.setVisible(false);
         addForm.setVisible(false);
         formChonSanPham.setVisible(false);
 
@@ -233,15 +230,15 @@ static int count  = 0;
 
    @FXML
     private void openCuaSoChonKhachHang(){
-        formChonKhachHang.setVisible(true);
+        cuaSoChonKhachHang.setVisible(true);
    }
    @FXML
    private void openCuaSoChonSanPham(){formChonSanPham.setVisible(true);}
    @FXML
     private void closeCuaSoChonSanPham() {formChonSanPham.setVisible(false);}
-    @FXML
+
     private void closeCuaSoChonKhachHang(){
-        formChonKhachHang.setVisible(false);
+        cuaSoChonKhachHang.setVisible(false);
    }
    @FXML
    private void chooseSanPham(){
@@ -264,20 +261,6 @@ static int count  = 0;
             closeCuaSoChonSanPham();
    }
 
-   @FXML
-    private void chooseKhachHang(){
-       if(khachHangChon ==null )
-           return;
-     if(addForm.isVisible()){
-         donHangMoiOrUpdate.setKhachHang(khachHangChon);
-         updateInfoOfTaoDonHangForm();
-         // tìm kiếm khách hàng
-     }else {
-         // TODO:
-         donHangTable.setItems(FXCollections.observableArrayList(DonHangService.getInstance().findDonHang(khachHangChon)));
-     }
-       closeCuaSoChonKhachHang();
-   }
    private KhachHangNo getKhachHangNoFromUI(){
         if(!checkBoxIsKhachNo.isSelected()){
             return null;

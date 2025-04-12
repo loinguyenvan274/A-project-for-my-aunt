@@ -7,29 +7,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewControler.BarControler" alignment="TOP_CENTER" focusTraversable="true" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="60.0" style="-fx-background-color: #e7e5ec;">
+<VBox id="bar" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewControler.BarControler" alignment="TOP_RIGHT" minWidth="120" focusTraversable="true" maxWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT"  styleClass="@../css/barStyle.css">
     <children>
-        <Button fx:id="khachHangBar" onAction="#setKhachHangScene" id="buttonkh" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 0;"  text="Khách hàng" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
+        <Button fx:id="khachHangBar" onAction="#setKhachHangScene" id="buttonkh" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-radius: 0;"  text="Khách hàng" textAlignment="LEFT" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS">
             <VBox.margin>
                 <Insets />
             </VBox.margin>
             <font>
-                <Font size="9.0" />
+                <Font size="11" />
             </font>
         </Button>
-        <Button fx:id="sanPhamBar" onAction="#setSanPhamScene" id="buttonkh" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 0;"  text="Sản Phẩm" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+        <Button fx:id="sanPhamBar" onAction="#setSanPhamScene" id="buttonkh" maxWidth="Infinity" mnemonicParsing="false"  style="-fx-background-radius: 0;"  text="Sản Phẩm" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
             <font>
-                <Font size="9.0" />
+                <Font size="11" />
             </font>
         </Button>
-        <Button fx:id="donHangBar" onAction="#setDonHangScene" id="buttonkh" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 0;"  text="Đơn hàng" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+        <Button fx:id="donHangBar" onAction="#setDonHangScene" id="buttonkh"  maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-radius: 0;"  text="Đơn hàng" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
             <font>
-                <Font size="9.0" />
+                <Font size="11" />
             </font>
         </Button>
-        <Button fx:id="khachHangNoBar" onAction="#setKhachHangNoScene" id="buttonkh" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 0;" text="Khách hàng nợ" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+        <Button fx:id="khachHangNoBar" onAction="#setKhachHangNoScene" id="buttonkh"  maxWidth="Infinity" mnemonicParsing="false"  style="-fx-background-radius: 0;" text="Đơn hàng nợ" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
             <font>
-                <Font size="9.0" />
+                <Font size="11" />
             </font>
         </Button>
     </children>

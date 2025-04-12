@@ -1,6 +1,5 @@
 package viewControler;
 
-import service.Manager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +24,7 @@ public class MainControler extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/khachHangView.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 800, 600);
-        scene.getStylesheets().add(this.getClass().getResource("/css/style.css").toExternalForm());
+        scene.getStylesheets().add(this.getClass().getResource("/css/generalCss.css").toExternalForm());
         primaryStage.setScene(scene);
     }
 
